@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProbationTwo</string>
+    <string name="action_settings">Settings</string>
+    <string name="idle">Idle</string>
+    <string name="downloading">Downloading</string>
+    <string name="downloaded">Downloaded</string>
+    <string name="picture_downloader">Picture downloader</string>
+    <string name="status">Status:</string>
+    <string name="download">Download</string>
+    <string name="open">Open</string>
+    <string name="url">http://pdaandrod.ru/img/pdaandrod_ru/index.jpg</string>
+
+</resources>
