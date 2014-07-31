@@ -10,6 +10,6 @@
     <string name="status">Status:</string>
     <string name="download">Download</string>
     <string name="open">Open</string>
-    <string name="url">http://pdaandrod.ru/img/pdaandrod_ru/index.jpg</string>
+    <string name="picture_url">http://pdaandrod.ru/img/pdaandrod_ru/index.jpg</string>
 
 </resources>

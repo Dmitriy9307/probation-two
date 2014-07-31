@@ -1157,8 +1157,8 @@ containing a value of this type.
         public static final int idle=0x7f0a000f;
         public static final int open=0x7f0a0015;
         public static final int picture_downloader=0x7f0a0012;
+        public static final int picture_url=0x7f0a0016;
         public static final int status=0x7f0a0013;
-        public static final int url=0x7f0a0016;
     }
     public static final class style {
         /** 

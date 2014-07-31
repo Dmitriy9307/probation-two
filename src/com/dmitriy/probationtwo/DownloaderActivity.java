@@ -8,6 +8,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -44,8 +46,8 @@ public class DownloaderActivity extends ActionBarActivity {
 				totalSize = urlConnection.getContentLength();
 				
 			    InputStream in = urlConnection.getInputStream();
-			    File SDCardRoot = Environment.getExternalStorageDirectory(); 
-	            File file = new File(SDCardRoot,"downloaded_file.png");
+			    File sDCardRoot = Environment.getExternalStorageDirectory(); 
+	            File file = new File(sDCardRoot,"downloaded_file.png");
 	            FileOutputStream out = new FileOutputStream(file);
 	            
 			    downloadedSize = 0;
@@ -61,6 +63,7 @@ public class DownloaderActivity extends ActionBarActivity {
 				
 				
 			} catch (IOException e) {
+				e.printStackTrace();
 				return Boolean.FALSE;
 			}
 			
@@ -77,14 +80,14 @@ public class DownloaderActivity extends ActionBarActivity {
 			if(result){
 				status.setText(R.string.downloaded);
 				buttonOpen.setVisibility(Button.VISIBLE);
-				Toast.makeText(DownloaderActivity.this, "Загрузка завершена", Toast.LENGTH_SHORT)
+				Toast.makeText(DownloaderActivity.this, "Loading finished", Toast.LENGTH_SHORT)
 				.show();
 			}else{
 				status.setText(R.string.idle);
 				buttonDownload.setVisibility(Button.VISIBLE);
 				progressBar.setVisibility(ProgressBar.INVISIBLE);
 				Toast.makeText(DownloaderActivity.this,
-						"Не возможно загрузить изображение",
+						"Impossible to load image",
 						Toast.LENGTH_SHORT).show();
 			}
 		}
@@ -110,16 +113,17 @@ public class DownloaderActivity extends ActionBarActivity {
             	status.setText(R.string.downloading);
             	
             	AsyncImagesLoader loader = new AsyncImagesLoader();
-            	loader.execute("http://pdaandrod.ru/img/pdaandrod_ru/index.jpg") ;
-            	//status.setText(R.string.downloaded);
-            	//buttonOpen.setVisibility(Button.VISIBLE);
+            	loader.execute(getResources().getString(R.string.picture_url)) ;
             }
         });
         
         
         buttonOpen.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                // Perform action on click
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setDataAndType(Uri.parse("file://" + new File(Environment.getExternalStorageDirectory(),"downloaded_file.png").getAbsolutePath()),"image/*");
+                startActivity(intent);
+                finish();
             }
         });
 	}
